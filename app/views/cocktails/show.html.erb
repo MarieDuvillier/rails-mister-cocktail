@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_path 'banner_cocktail.jpeg'%>);">
+    <div class="card-category">Popular</div>
+    <div class="card-description">
+      <h2><%=  @cocktail.name %></h2>
+      <%  @cocktail.doses.each do |dose| %>
+        <ul>
+          <li>
+      <%= dose.description %>
+      <%= dose.ingredient.name %>
+      </li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+
+<div class='text-center'>
+<h4>Add a new dose</h4>
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+  <%= f.association :ingredient %>
+  <%= f.input :description %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
+</div>
+</div>
+
